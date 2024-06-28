@@ -199,6 +199,7 @@ class MainWindow(QMainWindow):
             # É preciso copiar os arquivos da pasta original para a pasta "Original Input Data (.exp)"
             # Para isso, obtemos os caminhos originais dos arquivos no formato ".exp"
             caminhos_arquivos_exp = self.selecionar_arquivos()
+            num_arq_importados = len(caminhos_arquivos_exp)
 
             if caminhos_arquivos_exp is not None:
                 self.caminhos_originais_arquivos_exp = caminhos_arquivos_exp
@@ -245,6 +246,8 @@ class MainWindow(QMainWindow):
                 self.preencher_q_list_widget(self.ui.listWidget_FilesStandard)
                 self.preencher_q_list_widget(self.ui.listWidget_FilesSamples)
 
+                self.mostrar_dialog_box(tipo_dialogo="Sucessful", mensagem=f"{num_arq_importados} files were imported!")
+
             # Caso nenhum arquivo tenha sido selecionado
             else:
                 self.mostrar_dialog_box(tipo_dialogo="Info", mensagem="No file selected!")
@@ -260,6 +263,7 @@ class MainWindow(QMainWindow):
             # É preciso copiar os arquivos da pasta original para a pasta "Original Input Data (.exp)"
             # Para isso, obtemos os caminhos originais dos arquivos no formato ".exp"
             caminhos_arquivos_exp = self.selecionar_arquivos()
+            numero_arquivos_exp_selecionados = len(caminhos_arquivos_exp)
 
             if caminhos_arquivos_exp is not None:
                 # É preciso verificar se não há nenhum arquivo importado com o mesmo nome de algum arquivo importado
@@ -274,11 +278,13 @@ class MainWindow(QMainWindow):
                 itens_replicados_import = self.comparar_itens_replicados(nomes_arq_add, nomes_arq_exp)
 
                 itens_nao_duplicados_import = [item for item in nomes_arq_add if item not in itens_replicados_import]
+                numero_arquivos_nao_duplicados = len(itens_nao_duplicados_import)
 
                 # Agora precisamos obter o caminho original dos arquivos não duplicados
                 # Filtra os caminhos cujos nomes de arquivos estão na lista nomes_arquivo
                 caminhos_nao_duplicados = [caminho for caminho in caminhos_arquivos_exp if os.path.basename(caminho) in itens_nao_duplicados_import]
                 caminhos_arquivos_exp = caminhos_nao_duplicados
+
 
                 self.caminhos_originais_arquivos_exp.extend(caminhos_arquivos_exp)
 
@@ -345,7 +351,8 @@ class MainWindow(QMainWindow):
                 self.preencher_q_list_widget(self.ui.listWidget_FilesStandard)
                 self.preencher_q_list_widget(self.ui.listWidget_FilesSamples)
 
-
+                self.mostrar_dialog_box(tipo_dialogo="Sucessful", mensagem=f"{numero_arquivos_nao_duplicados}/{numero_arquivos_exp_selecionados}"
+                                                                      f" selected files were imported!")
 
         except Exception as e:
             self.mostrar_dialog_box(tipo_dialogo="Error", mensagem=e)
@@ -389,9 +396,15 @@ class MainWindow(QMainWindow):
             dialogo = ShowDialogInfo(mensagem)
             dialogo.exec()
 
+        if tipo_dialogo == "Sucessful":
+            dialogo = ShowDialogSucessful(mensagem)
+            dialogo.exec()
+
         if tipo_dialogo == "Error":
             dialogo = ShowDialogError(mensagem)
             dialogo.exec()
+
+
 
 
 if __name__ == "__main__":
