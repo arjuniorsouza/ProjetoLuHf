@@ -1,0 +1,33 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>icons/icon_close.png</file>
+    <file>icons/icon_maximize.png</file>
+    <file>icons/icon_minimize.png</file>
+    <file>icons/cil-link.png</file>
+    <file>icons/cil-equalizer.png</file>
+    <file>icons/cil-screen-desktop.png</file>
+    <file>icons/cil-size-grip.png</file>
+    <file>icons/cil-ethernet.png</file>
+    <file>icons/cil-file.png</file>
+    <file>icons/cil-file-add.png</file>
+    <file>icons/cil-find-in-page.png</file>
+    <file>icons/cil-folder.png</file>
+    <file>icons/cil-folder-open.png</file>
+    <file>icons/cil-home.png</file>
+    <file>icons/cil-settings.png</file>
+    <file>icons/cil-size-grip.png</file>
+    <file>icons/cil-window-minimize.png</file>
+    <file>icons/cil-window-restore.png</file>
+    <file>icons/cil-x.png</file>
+    <file>icons/cil-save.png</file>
+  </qresource>
+  <qresource prefix="images">
+    <file>images/logo_200x200.png</file>
+    <file>images/erro40.png</file>
+    <file>images/exito40.png</file>
+    <file>images/info40.png</file>
+    <file>images/logo_25x25.png</file>
+    <file>images/logo_45x45.png</file>
+    <file>images/logo_250x250.png</file>
+  </qresource>
+</RCC>
